@@ -9,7 +9,7 @@ def calcular_diferenca(hoje, aniversario):
     if aniversario < hoje:
         aniversario = aniversario.replace(year=hoje.year + 1)
     diferenca = aniversario - hoje
-    return diferenca.days, aniversario.year - hoje.year
+    return diferenca.days
 
 
 # Função que verifica se hoje é o aniversário
@@ -31,7 +31,7 @@ def acertar_data():
 
         hoje = date.today()
         aniversario = date(hoje.year, mes, dia)
-        dias, anos = calcular_diferenca(hoje, aniversario)
+        dias = calcular_diferenca(hoje, aniversario)
 
         if dia == hoje.day and mes == hoje.month:
             message = "Feliz aniversário!!!! Você está de aniversário hoje."
@@ -40,13 +40,13 @@ def acertar_data():
             meses = dias // 30
             dias_restantes = dias % 30
 
-            if anos == 0:
+            if meses == 0:
                 message = ('Hoje não é seu aniversário.\nFaltam {} meses e {} dias para seu aniversário.'
                            .format(meses, dias_restantes))
                 messagebox.showinfo("Resultado", message)
             else:
-                message = ('Hoje não é seu aniversário.\nFaltam {} anos, {} meses e {} dias para seu aniversário.'
-                           .format(anos, meses, dias_restantes))
+                message = ('Hoje não é seu aniversário.\nFaltam {} meses e {} dias para seu aniversário.'
+                           .format(meses, dias_restantes))
                 messagebox.showinfo("Resultado", message)
     except ValueError:
         messagebox.showerror("ERRO", "Por favor insira valores válidos.")
